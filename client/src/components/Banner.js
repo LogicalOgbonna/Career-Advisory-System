@@ -39,7 +39,6 @@ class Banner extends React.Component {
 
       this.setState({ errors });
     }
-    console.log(nextProp.authError);
   }
   validateSignUp = data => {
     const errors = {};
@@ -79,11 +78,9 @@ class Banner extends React.Component {
       this.setState({ errors });
       if (Object.keys(errors).length === 0) {
         // this.props.login(this.state);
-        console.log(this.state);
         this.props.register(this.state);
       }
     }
-    console.log(this.state.errors);
   };
   render() {
     return (
@@ -111,9 +108,7 @@ class Banner extends React.Component {
                       />
                     </div>
                   ) : (
-                    <div className="">
-                      {/* <Card /> */}
-                    </div>
+                    <div className="">{/* <Card /> */}</div>
                   )}
                 </div>
               </div>
