@@ -22,8 +22,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // connect to db
+console.log(process.env.MongoDbURI);
 mongoose
-  .connect("mongodb://cas-db-admin:Logical2020%@ds135107.mlab.com:35107/cas", {
+  .connect(process.env.MongoDbURI, {
     useNewUrlParser: true
   })
   .then(console.log("DB connected successfully"))
