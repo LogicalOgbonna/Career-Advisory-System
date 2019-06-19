@@ -1,0 +1,12 @@
+export const USER_LOGGED_IN = "USER_LOGGED_IN";
+export const USER_LOGGED_OUT = "USER_LOGGED_OUT";
+export const USER_CREATED = "USER_CREATED";
+export const AUTH_ERRORS = "ERRORS";
+export const TEST_ERRORS = "TEST_ERRORS";
+export const GET_TEST = "GET_TEST";
+export const GET_PROFILE = "GET_PROFILE";
+export const PROFILE_ERRORS = " PROFILE_ERRORS";
+export const PROFILE_CREATED = "PROFILE_CREATED";
+export const ADD_SUBJECT = "ADD_SUBJECT";
+export const GET_CAREER = "GET_CAREER";
+export const RIASEC = "RIASEC";
