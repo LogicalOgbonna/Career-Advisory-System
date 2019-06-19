@@ -23,8 +23,11 @@ app.use(bodyParser.json());
 
 // connect to db
 mongoose
-  .connect(process.env.MongoDbURI, { useNewUrlParser: true })
-  .then(console.log("DB connected successfully"));
+  .connect("mongodb://cas-db-admin:Logical2020%@ds135107.mlab.com:35107/cas", {
+    useNewUrlParser: true
+  })
+  .then(console.log("DB connected successfully"))
+  .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
