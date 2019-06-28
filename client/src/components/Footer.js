@@ -5,8 +5,8 @@ import "./Footer.css";
 
 export default function Footer({ isAuthenticated }) {
   return (
-    <footer>
-      <section className="copyright">
+    <footer className="mt-5">
+      <section className="copyright mt-5">
         <div className="container py-4">
           <div className="row bottom">
             <ul className="col-lg-6 links p-0">

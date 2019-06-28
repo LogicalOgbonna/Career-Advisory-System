@@ -36,12 +36,13 @@ router.post("/register", (req, res) => {
         r: "pg", // Rating
         d: "mm" // Default
       });
-
+      const admin = req.body.admin ? req.body.admin : false;
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
         avatar,
-        password: req.body.password
+        password: req.body.password,
+        admin
       });
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -55,7 +56,8 @@ router.post("/register", (req, res) => {
                 id: user.id,
                 email: user.email,
                 name: user.name,
-                avatar: user.avatar
+                avatar: user.avatar,
+                admin
               };
               jwt.sign(payload, process.env.secretOrKey, (err, token) => {
                 res.json({
@@ -89,7 +91,7 @@ router.post("/login", (req, res) => {
   User.findOne({ email }).then(user => {
     // Check for user
     if (!user) {
-      errors.email = "User not found";
+      errors.email = "email or password not correct";
       return res.status(404).json(errors);
     }
 
@@ -101,7 +103,8 @@ router.post("/login", (req, res) => {
           id: user.id,
           email: user.email,
           name: user.name,
-          avatar: user.avatar
+          avatar: user.avatar,
+          admin: user.admin
         }; // Create JWT Payload
 
         // Sign Token
@@ -112,7 +115,7 @@ router.post("/login", (req, res) => {
           });
         });
       } else {
-        errors.password = "Password incorrect";
+        errors.password = "email or password not correct";
         return res.status(400).json(errors);
       }
     });

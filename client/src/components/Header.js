@@ -19,7 +19,7 @@ const Header = ({ isAuthenticated, user, logout }) => {
             </li>
             <li>
               <span className="fa fa-envelope-open" />{" "}
-              <Link to="mailto:info@carreeradvice.com">
+              <Link to="mailto:info@careeradvice.com">
                 info@carreeradvice.com
               </Link>{" "}
             </li>

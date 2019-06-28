@@ -62,10 +62,10 @@ ul.links a,
 }
 .copyright {
   background: #111;
-  /* width: 100%;
-  position: absolute;
+  width: 100%;
+  position: fixed;
   bottom: 0;
-  left: 0; */
+  left: 0;
 }
 .copy-right {
   text-align: right;
@@ -137,7 +137,9 @@ ul.links a,
 /*-- move top --*/
 
 .move-top {
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }
 
 a.move-top {

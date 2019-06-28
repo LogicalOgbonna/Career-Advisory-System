@@ -7,7 +7,7 @@ import { login, register } from "../actions/auth";
 import RegisterForm from "../common/RegisterForm";
 import "./Banner.css";
 import Slider from "./Slider";
-import Card from "../common/Card";
+// import Card from "../common/Card";
 // import history from "../utils/history";
 
 class Banner extends React.Component {
@@ -17,13 +17,15 @@ class Banner extends React.Component {
     confirm_password: "",
     login: false,
     errors: {},
-    name: ""
+    name: "",
+    loading: false
   };
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  onLogin = () => {
+  onLogin = e => {
+    e.preventDefault();
     this.setState({ login: !this.state.login });
   };
 
@@ -37,7 +39,7 @@ class Banner extends React.Component {
       if (nextProp.authError.email) errors.email = nextProp.authError.email;
       if (nextProp.authError.name) errors.name = nextProp.authError.name;
 
-      this.setState({ errors });
+      this.setState({ errors, loading: false });
     }
   }
   validateSignUp = data => {
@@ -67,17 +69,17 @@ class Banner extends React.Component {
         email: this.state.email,
         password: this.state.password
       };
-      // console.log("login")
       const errors = this.validateLogin(data);
       this.setState({ errors });
       if (Object.keys(errors).length === 0) {
+        this.setState({ loading: true });
         this.props.login(data);
       }
     } else {
       const errors = this.validateSignUp(this.state);
       this.setState({ errors });
       if (Object.keys(errors).length === 0) {
-        // this.props.login(this.state);
+        this.setState({ loading: true });
         this.props.register(this.state);
       }
     }
@@ -96,6 +98,7 @@ class Banner extends React.Component {
                   {!this.props.isAuthenticated ? (
                     <div className="padding">
                       <RegisterForm
+                        loading={this.state.loading}
                         onSubmit={this.onSubmit}
                         email={this.state.email}
                         password={this.state.password}

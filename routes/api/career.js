@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 const passport = require("passport");
 
 const Profile = require("../../model/Profile");
@@ -398,7 +397,6 @@ router.get(
   }
 );
 
-
 // @route   Post api/career/code/:riasec_code
 // @desc    Get a user's Career
 // @access  Private
@@ -433,13 +431,15 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { career } = req.body;
-
-    if (career) {
-      new Career(career)
-        .save()
-        .then(ca => res.json(ca))
-        .catch(err => res.status(400).json(err));
+    if (req.user.admin) {
+      if (req.body) {
+        return new Career(req.body)
+          .save()
+          .then(ca => res.json(ca))
+          .catch(err => res.status(400).json(err));
+      }
+    } else {
+      return res.status(401).json("Unauthorized");
     }
   }
 );

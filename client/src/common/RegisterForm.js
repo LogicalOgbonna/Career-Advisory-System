@@ -10,7 +10,8 @@ const RegisterForm = ({
   login,
   onSubmit,
   errors,
-  name
+  name,
+  loading
 }) => {
   const styles = {
     color: "red"
@@ -45,10 +46,13 @@ const RegisterForm = ({
             {errors.password}
           </span>
         )}
-        <button className="btn"> Login</button>
+        <button disabled={loading} className="btn">
+          {" "}
+          {loading ? "Loading..." : "Login"}
+        </button>
         <span>
           Don't have an account?{" "}
-          <a href="javascript:void(0)" className="ml-1" onClick={onLogin}>
+          <a href="" className="ml-1" onClick={onLogin}>
             Sign Up
           </a>
         </span>
@@ -113,14 +117,17 @@ const RegisterForm = ({
             {errors.confirm_password}
           </span>
         )}
-        <button className="btn"> Sign Up</button>
+        <button disabled={loading} className="btn">
+          {" "}
+          {loading ? "Loading..." : " Sign Up"}
+        </button>
         <span>
-          By registering, you agree to our <a href="#">Terms & Conditions.</a>
+          By registering, you agree to our <a href="">Terms & Conditions.</a>
         </span>
         <br />
         <span>
           Already have an account?{" "}
-          <a href="javascript:void(0)" className="ml-1" onClick={onLogin}>
+          <a href="" className="ml-1" onClick={onLogin}>
             Login
           </a>
         </span>
@@ -139,7 +146,8 @@ RegisterForm.propTypes = {
   onLogin: propTypes.func.isRequired,
   onSubmit: propTypes.func.isRequired,
   onChange: propTypes.func.isRequired,
-  login: propTypes.bool.isRequired
+  login: propTypes.bool.isRequired,
+  loading: propTypes.bool.isRequired
 };
 
 export default RegisterForm;

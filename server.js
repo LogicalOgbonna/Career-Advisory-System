@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // connect to db
-console.log(process.env.MongoDbURI);
+// console.log(process.env.MongoDbURIOnline);
 mongoose
   .connect(process.env.MongoDbURI, {
     useNewUrlParser: true

@@ -30,8 +30,6 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { question } = req.body;
-
     Question.find({}).then(questions => {
       // if (questions.length) {
       //   questions.push(question);
@@ -41,7 +39,7 @@ router.post(
       // } else {
       const newQuestion = new Question();
 
-      newQuestion.questions = question;
+      newQuestion.questions = req.body;
       newQuestion
         .save()
         .then(data =>

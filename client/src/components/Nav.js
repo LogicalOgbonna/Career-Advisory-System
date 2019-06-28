@@ -19,37 +19,75 @@ const Nav = ({ active, user, logout }) => {
         >
           <span className="navbar-toggler-icon" />
         </button>
+
         <div className="collapse navbar-collapse" id="navbarCollapse">
-          <ul className="navbar-nav">
-            <li className="nav-item px-2">
-              <Link
-                to="/dashboard"
-                className={`nav-link ${active === "dashboard" ? "active" : ""}`}
-              >
-                Dashboard
-              </Link>
-            </li>
+          {user.admin ? (
+            <ul className="navbar-nav">
+              <li className="nav-item px-2">
+                <Link
+                  to="/dashboard"
+                  className={`nav-link ${
+                    active === "dashboard" ? "active" : ""
+                  }`}
+                >
+                  Dashboard
+                </Link>
+              </li>
 
-            <li className="nav-item px-2">
-              <Link
-                to="/personality"
-                className={`nav-link ${
-                  active === "personality" ? "active" : ""
-                }`}
-              >
-                personality Test
-              </Link>
-            </li>
+              <li className="nav-item px-2">
+                <Link
+                  to="/upload-personality"
+                  className={`nav-link ${
+                    active === "personality" ? "active" : ""
+                  }`}
+                >
+                  Upload Personality Test
+                </Link>
+              </li>
 
-            <li className="nav-item px-2">
-              <Link
-                to="/career"
-                className={`nav-link ${active === "career" ? "active" : ""}`}
-              >
-                Career Path
-              </Link>
-            </li>
-          </ul>
+              <li className="nav-item px-2">
+                <Link
+                  to="/upload-career"
+                  className={`nav-link ${active === "career" ? "active" : ""}`}
+                >
+                  Upload Careers
+                </Link>
+              </li>
+            </ul>
+          ) : (
+            <ul className="navbar-nav">
+              <li className="nav-item px-2">
+                <Link
+                  to="/dashboard"
+                  className={`nav-link ${
+                    active === "dashboard" ? "active" : ""
+                  }`}
+                >
+                  Dashboard
+                </Link>
+              </li>
+
+              <li className="nav-item px-2">
+                <Link
+                  to="/personality"
+                  className={`nav-link ${
+                    active === "personality" ? "active" : ""
+                  }`}
+                >
+                  personality Test
+                </Link>
+              </li>
+
+              <li className="nav-item px-2">
+                <Link
+                  to="/career"
+                  className={`nav-link ${active === "career" ? "active" : ""}`}
+                >
+                  Career Path
+                </Link>
+              </li>
+            </ul>
+          )}
 
           <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown mr-3">

@@ -10,3 +10,6 @@ export const PROFILE_CREATED = "PROFILE_CREATED";
 export const ADD_SUBJECT = "ADD_SUBJECT";
 export const GET_CAREER = "GET_CAREER";
 export const RIASEC = "RIASEC";
+export const QUESTION_UPLOAD = "QUESTION_UPLOAD";
+export const CAREER_UPLOAD = "CAREER_UPLOAD";
+export const UPLOAD_ERRRORS = "UPLOAD_ERRRORS";
