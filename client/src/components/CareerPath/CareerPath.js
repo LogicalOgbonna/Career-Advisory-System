@@ -25,7 +25,7 @@ class Career extends Component {
     if (nextProps.career) {
       this.setState({ career: nextProps.career, loading: false, table: true });
     }
-    if (nextProps.riasec.length) {
+    if (nextProps.riasec && nextProps.riasec.length) {
       this.setState({ riasec: nextProps.riasec });
     }
   }
@@ -67,7 +67,10 @@ class Career extends Component {
     student.area = area;
     if (Object.keys(errors).length === 0) {
       this.props.addSubject(student);
-      this.props.getPersonality(JSON.parse(localStorage.code));
+      const code = localStorage.code;
+      if (code) {
+        this.props.getPersonality(JSON.parse(localStorage.code));
+      }
       this.setState({ loading: true });
     }
   };

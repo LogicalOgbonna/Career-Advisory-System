@@ -6,6 +6,8 @@ import { PushSpinner } from "react-spinners-kit";
 import Card from "../../common/Card";
 import "./Question.css";
 
+import { WorkTable } from "../CareerPath/Table";
+
 let regex = /[A-Z]/g;
 
 const split = data => {
@@ -23,13 +25,16 @@ const Questions = ({
   onChange,
   finished,
   choice,
+  viewRiasec,
   code,
   realistic,
   artistic,
   social,
   enterprising,
   convention,
-  investigative
+  investigative,
+  view,
+  riasec
 }) => {
   const Test = () =>
     question ? (
@@ -71,25 +76,39 @@ const Questions = ({
     <div className="col-md-10 offset-1">
       <div style={{ paddingBottom: "15%" }} className="row">
         <div className="col-md-6 offset-3">
-          <div className="pt-5 pl-3">
-            <h3 className="text-muted text-center">
-              Your CAS RIASEC TEST Result
-            </h3>
-            <Card
-              code={code}
-              realistic={realistic}
-              artistic={artistic}
-              social={social}
-              enterprising={enterprising}
-              convention={convention}
-              investigative={investigative}
-            />
-          </div>
-          <div className="text-center">
-            <Link to="/career" className="btn btn-primary">
-              Career Path
-            </Link>
-            <p className=" text-danger">Click on the button to continue</p>
+          {!view ? (
+            <div className="pt-5 pl-3">
+              <h3 className="text-muted text-center">
+                Your CAS RIASEC TEST Result
+              </h3>
+              <Card
+                code={code}
+                realistic={realistic}
+                artistic={artistic}
+                social={social}
+                enterprising={enterprising}
+                convention={convention}
+                investigative={investigative}
+              />
+            </div>
+          ) : riasec.length ? (
+            <WorkTable name="Jobs" data={riasec} notRiasec={false} />
+          ) : (
+            "Loading..."
+          )}
+          <div className="row">
+            <div className=" text-center col-md-6">
+              <button onClick={viewRiasec} className="btn btn-primary">
+                {view ? "View Result" : "View Career Jobs"}
+              </button>
+            </div>
+            <div className="text-center  col-md-6">
+              <Link to="/career" className="btn btn-primary">
+                Upload Weac Result
+              </Link>
+            </div>
+
+            {/* <p className=" text-danger">Click on the button to continue</p> */}
           </div>
         </div>
       </div>
@@ -107,14 +126,17 @@ Questions.propTypes = {
   question: propTypes.object,
   onChange: propTypes.func.isRequired,
   finished: propTypes.bool.isRequired,
+  view: propTypes.bool.isRequired,
   choice: propTypes.string.isRequired,
   code: propTypes.string.isRequired,
+  riasec: propTypes.array.isRequired,
   realistic: propTypes.number.isRequired,
   artistic: propTypes.number.isRequired,
   social: propTypes.number.isRequired,
   enterprising: propTypes.number.isRequired,
   convention: propTypes.number.isRequired,
-  investigative: propTypes.number.isRequired
+  investigative: propTypes.number.isRequired,
+  viewRiasec: propTypes.func.isRequired
 };
 
 export default Questions;

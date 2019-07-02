@@ -24,7 +24,9 @@ class Test extends React.Component {
     social: 0,
     enterprising: 0,
     convention: 0,
-    code: ""
+    code: "",
+    riasec: [],
+    viewRiasec: false
   };
 
   componentDidMount() {
@@ -45,6 +47,9 @@ class Test extends React.Component {
         questions: question,
         lastIndex: question.length - 1
       });
+    }
+    if (nextProps.riasec && nextProps.riasec.length) {
+      this.setState({ riasec: nextProps.riasec });
     }
   }
   onChange = (option, type) => e => {
@@ -169,6 +174,10 @@ class Test extends React.Component {
     return a.value - b.value;
   }
 
+  viewRiasec = () => {
+    this.setState({ viewRiasec: !this.state.viewRiasec });
+  };
+
   finish = () => {
     const array = [];
     array.push({ value: this.state.realistic, name: "realistic" });
@@ -201,6 +210,8 @@ class Test extends React.Component {
             </div>
           </div>
           <Questions
+            viewRiasec={this.viewRiasec}
+            view={this.state.viewRiasec}
             onChange={this.onChange}
             question={this.state.questions[this.state.index]}
             finished={this.state.finished}
@@ -212,6 +223,7 @@ class Test extends React.Component {
             enterprising={this.state.enterprising}
             convention={this.state.convention}
             investigative={this.state.investigative}
+            riasec={this.state.riasec}
           />
 
           {!this.state.finished && (
@@ -233,7 +245,8 @@ class Test extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  tests: state.user.tests
+  tests: state.user.tests,
+  riasec: state.user.riasec
 });
 
 export default connect(

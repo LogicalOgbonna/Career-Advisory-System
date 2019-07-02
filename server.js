@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 // connect to db
 // console.log(process.env.MongoDbURIOnline);
 mongoose
-  .connect(process.env.MongoDbURI, {
+  .connect(process.env.MongoDbURIOnline, {
     useNewUrlParser: true
   })
   .then(console.log("DB connected successfully"))
