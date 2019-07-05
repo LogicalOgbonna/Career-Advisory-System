@@ -1,8 +1,6 @@
 ---
-"Career Advisory System"
+Career Advisory System
 ---
-
-# Career Advisory System
 
 ## Intorduction
 
