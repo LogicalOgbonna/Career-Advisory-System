@@ -213,7 +213,7 @@ router.get(
           if (scienceDepartment.length || subjectsPassed.length) {
             return res.json({
               message: "List of possible Course you can study",
-              data: scienceDepartment,
+              data:[ scienceDepartment[0], scienceDepartment[1], scienceDepartment[2], scienceDepartment[3], scienceDepartment[4]],
               subjectsPassed
             });
           } else {
