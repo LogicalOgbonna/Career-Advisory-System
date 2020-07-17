@@ -23,7 +23,7 @@
     "fast-csv": "^2.4.1",
     "gravatar": "^1.8.0",
     "http-errors": "~1.6.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "mongoose": "^5.4.16",
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
